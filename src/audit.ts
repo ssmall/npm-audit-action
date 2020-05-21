@@ -1,3 +1,4 @@
+import * as core from '@actions/core'
 import {spawnSync, SpawnSyncReturns} from 'child_process'
 import stripAnsi from 'strip-ansi'
 
@@ -11,7 +12,8 @@ export class Audit {
         'npm',
         ['audit', '--audit-level', auditLevel],
         {
-          encoding: 'utf-8'
+          encoding: 'utf-8',
+          cwd: core.getInput('working_directory'),
         }
       )
 

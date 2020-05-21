@@ -23,6 +23,10 @@ inputs:
     description: 'Issue title'
     default: 'npm audit found vulnerabilities'
     required: false
+  working_directory:
+    description: 'Directory that contains package.json'
+    default: ${GITHUB_WORKSPACE}
+    required: false
 runs:
   using: 'node12'
   main: 'dist/index.js'
