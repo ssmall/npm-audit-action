@@ -1,4 +1,3 @@
-import * as core from '@actions/core'
 import {spawnSync, SpawnSyncReturns} from 'child_process'
 import stripAnsi from 'strip-ansi'
 
@@ -6,14 +5,14 @@ export class Audit {
   stdout = ''
   private status: number | null = null
 
-  public async run(auditLevel: string): Promise<void> {
+  public async run(auditLevel: string, workingDirectory: string): Promise<void> {
     try {
       const result: SpawnSyncReturns<string> = spawnSync(
         'npm',
         ['audit', '--audit-level', auditLevel],
         {
           encoding: 'utf-8',
-          cwd: core.getInput('working_directory'),
+          cwd: workingDirectory,
         }
       )
 

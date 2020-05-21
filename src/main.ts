@@ -16,7 +16,7 @@ export async function run(): Promise<void> {
 
     // run `npm audit`
     const audit = new Audit()
-    audit.run(auditLevel)
+    await audit.run(auditLevel, core.getInput('working_directory'))
     core.info(audit.stdout)
 
     if (audit.foundVulnerability()) {
